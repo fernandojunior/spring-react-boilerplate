@@ -12,10 +12,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class AjaxAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
-	/** Send a 401 Unauthorized if authentication failed */
+    /** Send a 401 Unauthorized if authentication failed */
 
-	@Override
-	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
-	}
+    @Override
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+            AuthenticationException exception) throws IOException, ServletException {
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
+    }
 }

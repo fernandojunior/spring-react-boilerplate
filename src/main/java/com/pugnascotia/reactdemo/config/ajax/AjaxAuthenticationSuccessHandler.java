@@ -15,29 +15,30 @@ import com.pugnascotia.reactdemo.utils.Cookies;
 import com.pugnascotia.reactdemo.utils.State;
 
 /**
- * A handler that returns HTTP 200 OK for successful AJAX authentications,
- * and includes the user's roles in the response body.
+ * A handler that returns HTTP 200 OK for successful AJAX authentications, and includes the user's roles in the response
+ * body.
  */
 
 @Component
 public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-	private final ObjectMapper mapper;
+    private final ObjectMapper mapper;
 
-	@Inject
-	public AjaxAuthenticationSuccessHandler(ObjectMapper mapper) {
-		this.mapper = mapper;
-	}
+    @Inject
+    public AjaxAuthenticationSuccessHandler(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
 
-	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-		response.setStatus(HttpServletResponse.SC_OK);
-		Cookies.setSecurityTokens(request, response);
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
+        response.setStatus(HttpServletResponse.SC_OK);
+        Cookies.setSecurityTokens(request, response);
 
-		ServletOutputStream outputStream = response.getOutputStream();
+        ServletOutputStream outputStream = response.getOutputStream();
 
-		mapper.writeValue(outputStream, State.getAuthState(request));
+        mapper.writeValue(outputStream, State.getAuthState(request));
 
-		outputStream.close();
-	}
+        outputStream.close();
+    }
 }

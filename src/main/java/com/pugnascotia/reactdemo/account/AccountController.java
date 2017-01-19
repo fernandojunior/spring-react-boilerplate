@@ -9,16 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static com.pugnascotia.reactdemo.utils.State.populateModel;
 
 /**
- * Handles a request for the signin page and renders the
- * app. React Router takes care of showing the right page.
+ * Handles a request for the signin page and renders the app. React Router takes care of showing the right page.
  */
 
 @Controller
 public class AccountController {
 
-	@RequestMapping("/signin")
-	public String showSignIn(Model model, HttpServletRequest request) {
-		populateModel(model, request);
-		return "index";
-	}
+    @RequestMapping("/signin")
+    public String showSignIn(Model model, HttpServletRequest request) {
+        populateModel(model, request);
+        return "index";
+    }
 }

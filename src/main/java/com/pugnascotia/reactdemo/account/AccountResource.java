@@ -21,9 +21,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = "/api", produces = APPLICATION_JSON_VALUE)
 public class AccountResource {
 
-	@RequestMapping("/account")
-	public Map<String,Object> getAccountStatus(HttpServletRequest request) {
-		return State.getAuthState(request);
-	}
+    @RequestMapping("/account")
+    public Map<String, Object> getAccountStatus(HttpServletRequest request) {
+        return State.getAuthState(request);
+    }
 
 }

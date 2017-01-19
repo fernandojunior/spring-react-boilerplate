@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class AjaxLogoutSuccessHandler implements LogoutSuccessHandler {
 
-	/**
-	 * On a successful AJAX logout, send a redirect to /api/account. The response body
-	 * won't contain anything particularly useful, but the response headers will contain
-	 * the latest session and security (CSRF) tokens, meaning that subsequent POST requests
-	 * can work.
-	 */
-	@Override
-	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-		response.sendRedirect("/api/account");
-	}
+    /**
+     * On a successful AJAX logout, send a redirect to /api/account. The response body won't contain anything
+     * particularly useful, but the response headers will contain the latest session and security (CSRF) tokens, meaning
+     * that subsequent POST requests can work.
+     */
+    @Override
+    public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+            throws IOException, ServletException {
+        response.sendRedirect("/api/account");
+    }
 }
