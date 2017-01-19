@@ -118,7 +118,7 @@
                         </execution>
                         <execution>
                             <id>Run webpack</id>
-                            <phase>generate-resources</phase>
+                            <phase>build</phase>
                             <goals>
                                 <goal>yarn</goal>
                             </goals>
@@ -128,7 +128,7 @@
                         </execution>
                         <execution>
                             <id>Compile renderer</id>
-                            <phase>generate-resources</phase>
+                            <phase>build</phase>
                             <goals>
                                 <goal>yarn</goal>
                             </goals>
