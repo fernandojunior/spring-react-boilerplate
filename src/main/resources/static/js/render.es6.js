@@ -60,8 +60,7 @@ const render = (function () {
   <body>
     <div id="mount">${markup}</div>
     <script type="text/javascript">window.__INITIAL_STATE__ = ${safeJson}</script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js">
-    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
      integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
    <script type="text/javascript" src="/app/bundle.js"></script>
@@ -72,7 +71,7 @@ const render = (function () {
   return function(template, model) {
     const { requestPath, data, json } = getData(model);
 
-    const { markup, head } = ReactDemo.renderApp(requestPath, data);
+    const { markup, head } = ReactApplication.render(requestPath, data);
 
     return populateTemplate(markup, head, json);
   };

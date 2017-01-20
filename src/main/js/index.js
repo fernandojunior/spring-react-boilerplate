@@ -3,8 +3,8 @@
  * first import, even though it isn't explicitly referenced
  * in this file, in order to avoid runtime errors. */
 import React from 'react';
-import { render } from 'react-dom';
-import { renderToString } from 'react-dom/server';
+import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 
 /* State management with redux */
@@ -29,7 +29,7 @@ if (typeof window !== 'undefined') {
     </Provider>
   );
 
-  render(app, document.getElementById('mount'));
+  ReactDOM.render(app, document.getElementById('mount'));
 }
 
 /**
@@ -41,7 +41,7 @@ if (typeof window !== 'undefined') {
  * @returns string the rendered page
  */
 // eslint-disable-next-line import/prefer-default-export
-export function renderApp(path : string, state : Object) {
+export function render(path : string, state : Object) {
   const store = createStore(state);
 
   // first create a context for <ServerRouter>, it's where we keep the
@@ -49,7 +49,7 @@ export function renderApp(path : string, state : Object) {
   const context = createServerRenderContext();
 
   function doRender() {
-    return renderToString(
+    return ReactDOMServer.renderToString(
       <Provider store={store}>
         <ServerRouter
           location={path}

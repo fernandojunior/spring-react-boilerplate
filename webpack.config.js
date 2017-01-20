@@ -20,7 +20,7 @@ const config = {
     path: DEST,
     filename: 'bundle.js',
     publicPath: '/app/',
-    library: 'ReactDemo'
+    library: 'ReactApplication'
   },
   module: {
     rules: [
