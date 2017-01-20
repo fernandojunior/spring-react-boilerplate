@@ -57,6 +57,14 @@
 
     <build>
         <defaultGoal>clean spring-boot:run</defaultGoal>
+        <resources>
+            <resource>
+                <directory>src/main/js</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <pluginManagement>
             <plugins>
 
