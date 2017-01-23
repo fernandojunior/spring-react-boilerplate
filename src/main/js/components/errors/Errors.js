@@ -31,10 +31,10 @@ const Errors = (props : Props) => {
   switch (props.errors.status) {
     case 500:
       return <ServerError />;
-
     case 404:
+        return <NotFound />;
     default:
-      return <NotFound />;
+      return <spam/>
   }
 };
 
