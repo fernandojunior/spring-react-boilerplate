@@ -48,16 +48,14 @@
     "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
     "warning": "^3.0.0",
-    "webpack": "beta",
+    "webpack": "^2.2.0",
     "webpack-dev-server": "^1.16.1"
   },
   "private": true,
   "devDependencies": {
-    "eslint": "^3.11.1",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-loader": "^1.5.0",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint": "^3.13.1",
+    "eslint-loader": "^1.6.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.8.0"
+    "eslint-plugin-react": "^6.9.0"
   }
 }
