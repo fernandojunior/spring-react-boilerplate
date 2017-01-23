@@ -4,9 +4,9 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { routerContext as RouterType } from 'react-router/PropTypes';
 
-import { saveComment } from '../actions';
+import { saveComment } from './actions';
 
-import type { Router } from '../types';
+import type { Router } from '../../types';
 
 class AddComment extends React.Component {
   props: { dispatch: Function };

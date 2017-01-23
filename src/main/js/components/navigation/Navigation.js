@@ -8,9 +8,9 @@ import { routerContext as RouterType } from 'react-router/PropTypes';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { loggedOut } from '../actions';
+import { loggedOut } from '../../actions';
 
-import type { Auth, Router } from '../types';
+import type { Auth, Router } from '../../types';
 
 type Props = {
   auth: Auth,

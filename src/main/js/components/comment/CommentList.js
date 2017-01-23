@@ -4,11 +4,11 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import Comment from './Comment';
-import { refreshComments } from '../actions';
+import { refreshComments } from './actions';
 
 import './CommentList.less';
 
-import type { Dispatch } from '../types';
+import type { Dispatch } from '../../types';
 
 type Props = {
   status: string,

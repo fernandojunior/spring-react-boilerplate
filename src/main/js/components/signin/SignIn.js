@@ -5,9 +5,9 @@ import { routerContext as RouterType } from 'react-router/PropTypes';
 
 import axios from 'axios';
 
-import { authenticated } from '../actions';
+import { authenticated } from '../../actions';
 
-import type { Router } from '../types';
+import type { Router } from '../../types';
 
 type State = {
   authFailed: boolean
