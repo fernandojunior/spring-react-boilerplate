@@ -3,12 +3,11 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import Comment from './Comment';
-import { refreshComments } from './actions';
-
-import './CommentList.less';
-
 import type { Dispatch } from '../../types';
+
+import Comment from './Comment';
+import './CommentList.less';
+import { refreshComments } from './actions';
 
 type Props = {
   status: string,
@@ -25,12 +24,16 @@ class CommentList extends React.Component {
 
   componentDidMount() {
     if (this.props.status === 'stale') {
-      this.props.dispatch(refreshComments());
+      this.handleRefreshComments();
     }
   }
 
   handleRefreshComments() {
     this.props.dispatch(refreshComments());
+  }
+
+  renderComment({content, author, id}) {
+    return (<Comment author={author} content={content} key={id} />);
   }
 
   render() {
@@ -44,7 +47,7 @@ class CommentList extends React.Component {
         </div>
         { this.props.comments.length === 0
             ? <p>No comments yet! You could add one&hellip;?</p>
-            : this.props.comments.map(each => <Comment author={each.author} content={each.content} key={each.id} />) }
+            : this.props.comments.map(this.renderComment) }
       </div>
     );
   }

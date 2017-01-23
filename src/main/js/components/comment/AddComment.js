@@ -4,28 +4,24 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { routerContext as RouterType } from 'react-router/PropTypes';
 
-import { saveComment } from './actions';
-
 import type { Router } from '../../types';
+
+import { saveComment } from './actions';
 
 class AddComment extends React.Component {
   props: { dispatch: Function };
   context: { router: Router };
 
   authorInput : HTMLInputElement;
-  contextInput: HTMLInputElement;
+  contentInput: HTMLInputElement;
 
-  addComment(author : string, content : string) : void {
-    this.props.dispatch(saveComment(author, content));
-  }
-
-  onSubmit(e) {
+  handleSaveComment(e) {
     e.preventDefault();
 
     const author = this.authorInput;
-    const content = this.contextInput;
+    const content = this.contentInput;
 
-    this.addComment(author.value.trim(), content.value.trim());
+    this.props.dispatch(saveComment(author.value.trim(), content.value.trim()));
 
     author.value = '';
     content.value = '';
@@ -35,7 +31,7 @@ class AddComment extends React.Component {
 
   render() {
     return (
-      <form onSubmit={e => this.onSubmit(e)}>
+      <form onSubmit={this.handleSaveComment}>
         <h1>Add Comment</h1>
         <div className="form-group">
           <label htmlFor="author">Author:</label>
@@ -43,7 +39,7 @@ class AddComment extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="comment">Comment:</label>
-          <input id="comment" className="form-control" type="text" size={50} ref={el => { this.contextInput = el; }} />
+          <input id="comment" className="form-control" type="text" size={50} ref={el => { this.contentInput = el; }} />
         </div>
         <Link to="/" className="btn btn-primary">Back</Link>
         {' '}
