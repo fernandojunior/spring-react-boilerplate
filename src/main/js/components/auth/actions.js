@@ -1,7 +1,7 @@
 /* @flow */
 import axios from 'axios';
 
-import type { Action, AuthData, Comment, ThunkAction } from './types';
+import type { Action, AuthData } from '../../types';
 
 export const AUTHENTICATED = 'AUTHENTICATED';
 export const LOGGED_OUT = 'LOGGED_OUT';

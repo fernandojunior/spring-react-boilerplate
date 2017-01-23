@@ -5,7 +5,7 @@ import { routerContext as RouterType } from 'react-router/PropTypes';
 
 import axios from 'axios';
 
-import { authenticated } from '../../actions';
+import { authenticated } from '../auth/actions';
 
 import type { Router } from '../../types';
 
