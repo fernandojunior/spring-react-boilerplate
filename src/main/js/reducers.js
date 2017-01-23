@@ -1,6 +1,7 @@
 /* @flow */
 import { combineReducers } from 'redux';
-import { ADD_COMMENT, COMMENTS_REFRESHED, AUTHENTICATED, LOGGED_OUT } from './actions';
+import { AUTHENTICATED, LOGGED_OUT } from './actions';
+import { ADD_COMMENT, COMMENTS_REFRESHED } from './components/comment/actions';
 
 import type { Action, Comment, Role } from './types';
 
