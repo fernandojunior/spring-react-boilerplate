@@ -5,8 +5,8 @@ frontend.
 
 ## Another Boilerplate?
 
-Yes, but with Java. It's inspired by the
-[spring-react-isomorphic](https://github.com/sdeleuze/spring-react-isomorphic)
+It's inspired by the
+[spring-react-boilerplate](https://github.com/pugnascotia/spring-react-boilerplate)
 project, but uses:
 
 - [Yarn](https://yarnpkg.com/) for installing Node modules.
