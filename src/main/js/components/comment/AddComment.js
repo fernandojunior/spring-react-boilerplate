@@ -31,7 +31,7 @@ class AddComment extends React.Component {
 
   render() {
     return (
-      <form onSubmit={ this.handleSaveComment }>
+      <form onSubmit={ e => this.handleSaveComment(e) }>
         <h1>Add Comment</h1>
         <div className="form-group">
           <label htmlFor="author">Author:</label>
