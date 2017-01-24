@@ -5,7 +5,7 @@ import { routerContext as RouterType } from 'react-router/PropTypes';
 
 import axios from 'axios';
 
-import { authenticated } from '../auth/actions';
+import { signIn } from '../auth/actions';
 
 import type { Router } from '../../types';
 
@@ -36,23 +36,19 @@ class SignIn extends React.Component {
       return;
     }
 
-    const data = `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
-
-    axios.post('/api/authenticate', data)
-      .then(
+    this.props.dispatch(signIn(username, password, 
         success => {
-          this.props.dispatch(authenticated(success.data));
+            const { location } = this.props;
+            console.log(location);
+            const nextPathname = location.state && location.state.nextPathname ? location.state.nextPathname : '/';
 
-          const { location } = this.props;
-          const nextPathname = location.state && location.state.nextPathname ? location.state.nextPathname : '/';
-
-          this.context.router.transitionTo(nextPathname);
+            this.context.router.transitionTo(nextPathname);
         },
         failure => {
-          console.error(failure);
-          this.setState({ authFailed: true });
+            console.error(failure);
+            this.setState({ authFailed: true });
         }
-      );
+    ));
   }
 
   authFailedMessage() {
@@ -99,5 +95,9 @@ SignIn.contextTypes = {
   router: RouterType.isRequired
 };
 
+function mapStateToProps(state) {
+  return { auth: state.auth };
+}
+
 /* Inject auth state and dispatch() into props */
-export default connect(state => ({ auth: state.auth }))(SignIn);
+export default connect(mapStateToProps)(SignIn);

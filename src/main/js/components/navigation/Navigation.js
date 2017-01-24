@@ -8,13 +8,13 @@ import { routerContext as RouterType } from 'react-router/PropTypes';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { loggedOut } from '../auth/actions';
+import { signOut} from '../auth/actions';
 
 import type { Auth, Router } from '../../types';
 
 type Props = {
   auth: Auth,
-  onSignOut: Function
+  dispatch: Function
 };
 
 type Context = {
@@ -26,14 +26,9 @@ class Navigation extends React.Component {
   context: Context;
 
   handleSignOut() {
-    axios.post('/api/signout')
-      .then(
-        (/* success*/) => {
-          this.props.onSignOut();
-          this.context.router.transitionTo('/');
-        },
-        failure => console.error(`Failed to log out successfully: ${failure}`)
-      );
+    this.props.dispatch(signOut(success => {
+        this.context.router.transitionTo('/');
+    }));    
   }
 
   adminMenu() {
@@ -109,7 +104,4 @@ Navigation.contextTypes = {
 };
 
 /* Inject auth state and a dispatch() wrapper into props */
-export default connect(
-  state => ({ auth: state.auth }),
-  dispatch => ({ onSignOut: () => dispatch(loggedOut()) })
-)(Navigation);
+export default connect(state => ({ auth: state.auth }))(Navigation);
