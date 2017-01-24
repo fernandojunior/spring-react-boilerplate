@@ -13,6 +13,13 @@ export function addComment(comment : Comment) : Action {
   };
 }
 
+export function commentsRefreshed(comments : Comment[]) : Action {
+  return {
+    type: COMMENTS_REFRESHED,
+    comments
+  };
+}
+
 export function saveComment(author : string, content : string) : ThunkAction {
   return dispatch => {
     axios.post('/api/comments', { author, content })
@@ -20,13 +27,6 @@ export function saveComment(author : string, content : string) : ThunkAction {
         success => dispatch(addComment(success.data)),
         failure => console.error(failure)
       );
-  };
-}
-
-export function commentsRefreshed(comments : Comment[]) : Action {
-  return {
-    type: COMMENTS_REFRESHED,
-    comments
   };
 }
 
