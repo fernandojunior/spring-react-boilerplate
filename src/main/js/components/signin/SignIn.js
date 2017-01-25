@@ -39,9 +39,7 @@ class SignIn extends React.Component {
     this.props.dispatch(signIn(username, password, 
         success => {
             const { location } = this.props;
-            console.log(location);
             const nextPathname = location.state && location.state.nextPathname ? location.state.nextPathname : '/';
-
             this.context.router.transitionTo(nextPathname);
         },
         failure => {

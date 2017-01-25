@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
         .formLogin()
             .loginPage("/signin")
-            .loginProcessingUrl("/api/authenticate")
+            .loginProcessingUrl("/api/signin")
             .successHandler(authSuccessHandler)
             .failureHandler(authFailureHandler)
             .permitAll()
