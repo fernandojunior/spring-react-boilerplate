@@ -1,17 +1,17 @@
 /* @flow */
 import axios from 'axios';
 
-import type { Action, AuthData, ThunkAction } from '../../types';
+import type { Action, AuthState, ThunkAction } from '../../types';
 
 export const ACTION_TYPES = {
   LOGGED_IN: 'LOGGED_IN',
   LOGGED_OUT: 'LOGGED_OUT'
 };
 
-export function loggedIn(authData : AuthData) : Action {
+export function loggedIn(authState : AuthState) : Action {
   return {
     type: ACTION_TYPES.LOGGED_IN,
-    roles: authData.roles
+    auth: authState
   };
 }
 

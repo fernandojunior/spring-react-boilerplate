@@ -1,6 +1,6 @@
 package com.pugnascotia.reactdemo.utils;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,18 +40,15 @@ public final class State {
      * Returns a representation of the user's authentication state, in the shape expected by the client.
      */
     public static Map<String, Object> getAuthState(HttpServletRequest request) {
-        Optional<List<String>> optionalRoles = getRoles(request);
-
-        return optionalRoles.map(roles -> {
-            Map<String, Object> authState = new HashMap<>();
+        Map<String, Object> authState = new HashMap<>();
+        return getRoles(request).map(roles -> {
             authState.put("signedIn", !roles.contains("ROLE_ANONYMOUS"));
             authState.put("roles", roles);
 
             return authState;
         }).orElseGet(() -> {
-            Map<String, Object> authState = new HashMap<>();
             authState.put("signedIn", false);
-            authState.put("roles", Collections.singletonList("ROLE_ANONYMOUS"));
+            authState.put("roles", Arrays.asList("ROLE_ANONYMOUS"));
 
             return authState;
         });

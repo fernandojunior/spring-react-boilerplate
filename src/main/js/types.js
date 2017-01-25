@@ -12,14 +12,17 @@ export type Role =
   | 'ROLE_USER'
   | 'ROLE_ANONYMOUS';
 
-export type Comment = { author : string, comment : string };
+export type AuthState = {
+  signedIn: boolean,
+  roles: Role[]
+};
 
-export type AuthData = { roles: Role[] };
+export type Comment = { author : string, comment : string };
 
 export type Action =
     { type: 'ADD_COMMENT', comment: Comment }
   | { type: 'COMMENTS_REFRESHED', comments: Comment[] }
-  | { type: 'LOGGED_IN', roles: Role[] }
+  | { type: 'LOGGED_IN', auth: AuthState }
   | { type: 'LOGGED_OUT' };
 
 export type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
