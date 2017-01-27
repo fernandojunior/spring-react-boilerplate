@@ -5,7 +5,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
-import Helmet from 'react-helmet';
 
 /* State management with redux */
 import { Provider } from 'react-redux';
@@ -73,8 +72,5 @@ export function render(path : string, state : Object) {
     markup = doRender();
   }
 
-  // Free accumulated object to avoid memory leak and return data to parent renderer
-  const head = Helmet.rewind();
-
-  return { markup, head };
+  return markup;
 }

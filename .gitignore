@@ -4,6 +4,7 @@ target/
 node_modules/
 src/main/resources/static/app/
 src/main/resources/static/js/render.js
+src/main/resources/static/bower_components/*
 
 ### STS ###
 .apt_generated

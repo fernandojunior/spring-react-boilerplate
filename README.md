@@ -20,8 +20,6 @@ project, but uses:
 - [react-router](https://github.com/rackt/react-router) for page routing,
   on client and server. Note that this is version 4, with a very different (and
   simpler) API to previous versions.
-- [react-helmet](https://github.com/nfl/react-helmet) for managing
-  meta-data in the HTML
 - Linting integrated with Webpack via [eslint](https://github.com/MoOx/eslint-loader).
 - Type checking with [Flow](https://flowtype.org/).
 

@@ -39,7 +39,6 @@
     "less-loader": "^2.2.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-helmet": "^3.2.3",
     "react-redux": "^4.4.4",
     "react-router": "^4.0.0-alpha.4",
     "react-router-redux": "^4.0.6",

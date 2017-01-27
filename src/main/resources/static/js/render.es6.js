@@ -4,7 +4,7 @@ const render = (function () {
 
   function getData(model) {
     const renderData = { data: {} };
-    for (let key in model) {
+    for (const key in model) {
       if (key.startsWith("__")) {
         renderData[ key.substring(2) ] = model[key];
       }
@@ -48,20 +48,9 @@ const render = (function () {
 
   return function(template, model) {
     const { requestPath, data, json } = getData(model);
+    const markup = ReactApplication.render(requestPath, data);
+    const state = json.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
 
-    const { markup, head } = ReactApplication.render(requestPath, data);
-
-    const safeJson = json.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
-
-    return Mustache.render(template, {
-      markup: markup,
-      state: safeJson,
-      head: {
-        base: head.base.toString(),
-        link: head.link.toString(),
-        meta: head.meta.toString(),
-        title: head.title.toString()
-      }
-    });
+    return Mustache.render(template, { markup, state });
   };
 })();

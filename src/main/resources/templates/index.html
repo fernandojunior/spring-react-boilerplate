@@ -1,17 +1,25 @@
 <!doctype html>
-<html {{head.htmlAttributes.toString()}}>
-  <head>
-    {{ &head.base }}
-    {{ &head.link }}
-    {{ &head.meta }}
-    {{ &head.title }}
-  </head>
-  <body>
+<html>
+<head>
+    <meta name="description" content="Spring React Boilerplate">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="article">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Spring React Boilerplate</title>
+
+    <!-- <link rel="canonical" href="http://example.com/example"> -->
+    <!-- <link rel="apple-touch-icon" href="http://example.com/img/apple-touch-icon-57x57.png"> -->
+    <!-- <link rel="apple-touch-icon" sizes="72x72" href="http://example.com/img/apple-touch-icon-72x72.png"> -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/app/bundle.css">
+</head>
+<body>
     <div id="mount">{{ &markup }}</div>
-    <script type="text/javascript">window.__INITIAL_STATE__ = {{ &state }}</script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-     integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-   <script type="text/javascript" src="/app/bundle.js"></script>
- </body>
+    <script>window.__INITIAL_STATE__ = {{ &state }}</script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/app/bundle.js"></script>
+</body>
 </html>
