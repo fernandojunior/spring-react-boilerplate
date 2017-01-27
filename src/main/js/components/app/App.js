@@ -2,8 +2,11 @@
 import React from 'react';
 import { Match, Miss } from 'react-router';
 
-import MatchWhenAuthorized from './MatchWhenAuthorized';
-import { AddComment, CommentList, Errors, Navigation, SignIn } from '../components';
+import { Errors } from '../errors';
+import { MatchWhenAuthorized } from '../match';
+import { SignIn } from '../signin';
+import { Navigation } from '../navigation';
+import { AddComment, CommentList } from '../comment';
 
 const App = () => (
   <div>

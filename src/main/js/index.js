@@ -1,22 +1,24 @@
 /* @flow */
+
 /* React, browser and server rendering functions. We need the
  * first import, even though it isn't explicitly referenced
- * in this file, in order to avoid runtime errors. */
+ * in this file, in order to avoid runtime errors. 
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 
-/* State management with redux */
+// State management with redux
 import { Provider } from 'react-redux';
 
-/* Routing with react-router */
+// Routing with react-router
 import { BrowserRouter, ServerRouter, createServerRenderContext } from 'react-router';
 
-import App from './containers/App';
+import { App } from './components/app';
 
 import createStore from './store';
 
-/* Client-side rendering. We rehydrate the Redux store and plugin it into the page render.*/
+// Client-side rendering. We rehydrate the Redux store and plugin it into the page render
 if (typeof window !== 'undefined') {
   const store = createStore(window.__INITIAL_STATE__);
 
