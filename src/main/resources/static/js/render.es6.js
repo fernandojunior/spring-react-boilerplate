@@ -46,33 +46,22 @@ const render = (function () {
     return ESCAPED_CHARS[unsafeChar];
   }
 
-  function populateTemplate(markup, head, stateAsJson) {
-    const safeJson = stateAsJson.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
-
-    return `<!doctype html>
-<html ${head.htmlAttributes.toString()}>
-  <head>
-    ${ head.base.toString() }
-    ${ head.link.toString() }
-    ${ head.meta.toString() }
-    ${ head.title.toString() }
-  </head>
-  <body>
-    <div id="mount">${markup}</div>
-    <script type="text/javascript">window.__INITIAL_STATE__ = ${safeJson}</script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-     integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-   <script type="text/javascript" src="/app/bundle.js"></script>
- </body>
-</html>`;
-  }
-
   return function(template, model) {
     const { requestPath, data, json } = getData(model);
 
     const { markup, head } = ReactApplication.render(requestPath, data);
 
-    return populateTemplate(markup, head, json);
+    const safeJson = json.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
+
+    return Mustache.render(template, {
+      markup: markup,
+      state: safeJson,
+      head: {
+        base: head.base.toString(),
+        link: head.link.toString(),
+        meta: head.meta.toString(),
+        title: head.title.toString()
+      }
+    });
   };
 })();

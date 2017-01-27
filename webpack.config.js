@@ -8,8 +8,6 @@ const TARGET = process.env.npm_lifecycle_event;
 const SRC = path.resolve(__dirname, 'src/main/js');
 const DEST = path.resolve(__dirname, 'src/main/resources/static/app');
 
-const sourcePath = path.resolve(__dirname, 'src/main/js');
-
 const config = {
   entry: './index',
   context: SRC,

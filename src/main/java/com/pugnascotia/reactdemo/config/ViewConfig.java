@@ -22,7 +22,7 @@ public class ViewConfig {
      *     <li><code>bundle.js</code> - all our application code, bundled up by Webpack</li>
      * </ul>
      */
-    private static final String[] scripts = { "static/js/polyfill.js", "static/js/render.js", "static/app/bundle.js" };
+    private static final String[] scripts = { "static/js/polyfill.js", "static/js/mustache.min.js", "static/js/render.js", "static/app/bundle.js" };
 
     /**
      * Configures where to find the views that we can render. Since we actually do all the rendering in 'render.js', we
@@ -32,7 +32,7 @@ public class ViewConfig {
     public ViewResolver reactViewResolver() {
         ScriptTemplateViewResolver viewResolver = new ScriptTemplateViewResolver();
         viewResolver.setPrefix("templates/");
-        viewResolver.setSuffix(".txt");
+        viewResolver.setSuffix(".html");
         return viewResolver;
     }
 
