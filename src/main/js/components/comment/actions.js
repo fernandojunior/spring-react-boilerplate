@@ -3,21 +3,21 @@ import axios from 'axios';
 
 import type { Action, Comment, ThunkAction } from '../../types';
 
-export const ACTION_TYPES = {
+export const actionTypes = {
   ADD_COMMENT: 'ADD_COMMENT',
   COMMENTS_REFRESHED: 'COMMENTS_REFRESHED'
 }
 
 export function addComment(comment : Comment) : Action {
   return {
-    type: ACTION_TYPES.ADD_COMMENT,
+    type: actionTypes.ADD_COMMENT,
     comment
   };
 }
 
 export function commentsRefreshed(comments : Comment[]) : Action {
   return {
-    type: ACTION_TYPES.COMMENTS_REFRESHED,
+    type: actionTypes.COMMENTS_REFRESHED,
     comments
   };
 }

@@ -3,21 +3,21 @@ import axios from 'axios';
 
 import type { Action, AuthState, ThunkAction } from '../../types';
 
-export const ACTION_TYPES = {
+export const actionTypes = {
   LOGGED_IN: 'LOGGED_IN',
   LOGGED_OUT: 'LOGGED_OUT'
 };
 
 export function loggedIn(authState : AuthState) : Action {
   return {
-    type: ACTION_TYPES.LOGGED_IN,
+    type: actionTypes.LOGGED_IN,
     auth: authState
   };
 }
 
 export function loggedOut() : Action {
   return {
-    type: ACTION_TYPES.LOGGED_OUT
+    type: actionTypes.LOGGED_OUT
   };
 }
 

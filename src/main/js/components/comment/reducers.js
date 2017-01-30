@@ -1,7 +1,7 @@
 /* @flow */
 import type { Action, Comment } from '../../types';
 
-import { ACTION_TYPES } from './actions';
+import { actionTypes } from './actions';
 
 type CommentListState = {
   status: 'stale' | 'loaded',
@@ -10,13 +10,13 @@ type CommentListState = {
 
 function commentReducer(state : CommentListState = { status: 'stale', data: [] }, action : Action) : CommentListState {
   switch (action.type) {
-    case ACTION_TYPES.ADD_COMMENT:
+    case actionTypes.ADD_COMMENT:
       return {
         status: state.status,
         data: state.data.concat(action.comment)
       };
 
-    case ACTION_TYPES.COMMENTS_REFRESHED:
+    case actionTypes.COMMENTS_REFRESHED:
       return {
         status: 'loaded',
         data: action.comments
