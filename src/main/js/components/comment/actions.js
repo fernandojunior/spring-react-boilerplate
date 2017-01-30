@@ -8,28 +8,21 @@ export const actionTypes = {
   COMMENTS_REFRESHED: 'COMMENTS_REFRESHED'
 }
 
-export function addComment(comment : Comment) : Action {
-  return {
-    type: actionTypes.ADD_COMMENT,
-    comment
-  };
-}
-
-export function commentsRefreshed(comments : Comment[]) : Action {
-  return {
-    type: actionTypes.COMMENTS_REFRESHED,
-    comments
-  };
-}
-
 export function saveComment(author : string, content : string) : ThunkAction {
-  return dispatch => commentsService.create(
-    { author, content }, success => dispatch(addComment(success.data))
+  return dispatch => commentsService.save(
+    { author, content },
+    success => dispatch({
+      type: actionTypes.ADD_COMMENT,
+      comment: success.data
+    })
   );
 }
 
 export function refreshComments() : ThunkAction {
   return dispatch => commentsService.findAll(
-    success => dispatch(commentsRefreshed(success.data))
+    success => dispatch({
+      type: actionTypes.COMMENTS_REFRESHED,
+      comments: success.data
+    })
   );
 }

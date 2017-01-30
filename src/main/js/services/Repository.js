@@ -38,14 +38,13 @@ class Repository {
     return `${ paginationParams}&${ filterParams }`;
   }
 
-  update(id, data, onSuccess) {
-    return axios.put(this.url + "/" + id, data)
-      .then(onSuccess)
-      .catch(error => errorLogger(error, onError));
-  }
-
-  create(data, onSuccess) {
-    return axios.post(this.url, data)
+  save(data, onSuccess) {
+    let promise = null;
+    if (data && data.id)
+      promise = axios.put(this.url + "/" + id, data);
+    else
+      promise = axios.post(this.url, data);
+    return promise
       .then(onSuccess)
       .catch(error => errorLogger(error, onError));
   }
