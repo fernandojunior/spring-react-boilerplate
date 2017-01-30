@@ -1,7 +1,7 @@
 /* @flow */
-import axios from 'axios';
-
 import type { Action, Comment, ThunkAction } from '../../types';
+
+import { commentsService } from '../../services';
 
 export const actionTypes = {
   ADD_COMMENT: 'ADD_COMMENT',
@@ -23,22 +23,13 @@ export function commentsRefreshed(comments : Comment[]) : Action {
 }
 
 export function saveComment(author : string, content : string) : ThunkAction {
-  return dispatch => {
-    axios.post('/api/comments', { author, content })
-      .then(
-        success => dispatch(addComment(success.data)),
-        failure => console.error(failure)
-      );
-  };
+  return dispatch => commentsService.create(
+    { author, content }, success => dispatch(addComment(success.data))
+  );
 }
 
 export function refreshComments() : ThunkAction {
-  return dispatch => {
-    axios.get('/api/comments')
-      .then(
-        success => dispatch(commentsRefreshed(success.data)),
-        failure => console.log(failure)
-      );
-  };
+  return dispatch => commentsService.findAll(
+    success => dispatch(commentsRefreshed(success.data))
+  );
 }
-
