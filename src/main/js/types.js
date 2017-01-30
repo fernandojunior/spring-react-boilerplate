@@ -1,6 +1,7 @@
 /* @flow */
 /* eslint no-use-before-define:"off" */
 /* Inspired by https://github.com/fbsamples/f8app/blob/master/js/actions/types.js */
+// TODO decouple module
 
 export type Auth = {
   roles: String[],

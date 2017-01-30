@@ -36,16 +36,15 @@ class SignIn extends React.Component {
       return;
     }
 
-    this.props.dispatch(signIn(username, password, 
-        success => {
-            const { location } = this.props;
-            const nextPathname = location.state && location.state.nextPathname ? location.state.nextPathname : '/';
-            this.context.router.transitionTo(nextPathname);
-        },
-        failure => {
-            console.error(failure);
-            this.setState({ authFailed: true });
-        }
+    this.props.dispatch(signIn(username, password,
+      success => {
+        const { location } = this.props;
+        const nextPathname = location.state && location.state.nextPathname ? location.state.nextPathname : '/';
+        this.context.router.transitionTo(nextPathname);
+      },
+      error => {
+        this.setState({ authFailed: true });
+      }
     ));
   }
 
@@ -59,7 +58,8 @@ class SignIn extends React.Component {
         <div className="col-xs-12 col-sm-6 col-sm-offset-3 alert alert-danger" role="alert">
           Authentication failed!
         </div>
-      </div>);
+      </div>
+    );
   }
 
   render() {

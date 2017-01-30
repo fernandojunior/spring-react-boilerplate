@@ -1,7 +1,7 @@
 /* @flow */
-import axios from 'axios';
-
 import type { Action, AuthState, ThunkAction } from '../../types';
+
+import { authService } from '../../services';
 
 export const actionTypes = {
   LOGGED_IN: 'LOGGED_IN',
@@ -21,39 +21,32 @@ export function loggedOut() : Action {
   };
 }
 
-export function signIn(username: string, password: string,
-                       successCallback: Function,
-                       failureCallback: Function) : ThunkAction {
-  const data = `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+export function signIn(username: string, password: string, onSuccess: Function, onError: Function) : ThunkAction {
   return dispatch => {
-    axios.post('/api/signin', data)
-      .then(
-        success => {
-          dispatch(loggedIn(success.data));
-          successCallback(success);
-        },
-        failure => {
-          console.error(failure);
-          if (failureCallback)
-              failureCallback(failure);
-        }
-      );
+    authService.signIn(username, password)
+      .then(success => {
+        dispatch(loggedIn(success.data));
+        onSuccess(success);
+      })
+      .catch(error => {
+        console.error(`Failed to log out successfully: ${error}`);
+        if (onError)
+          onError(error);
+      });
   }
 }
 
-export function signOut(successCallback: Function, failureCallback?: Function) : ThunkAction {
+export function signOut(onSuccess: Function, onError?: Function) : ThunkAction {
   return dispatch => {
-    axios.post('/api/signout')
-    .then(
-      (/* success*/) => {
+    authService.signOut()
+      .then(success => {
         dispatch(loggedOut());
-        successCallback();
-      },
-      failure => {
-        console.error(`Failed to log out successfully: ${failure}`)
-        if (failureCallback)
-            failureCallback(failure);
-      }
-    );
+        onSuccess();
+      })
+      .catch(error => {
+        console.error(`Failed to log out successfully: ${error}`);
+        if (onError)
+          onError(error);
+      });
   }
 }
