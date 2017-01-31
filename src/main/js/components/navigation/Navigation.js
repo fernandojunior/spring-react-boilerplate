@@ -1,39 +1,27 @@
 /* @flow */
 /* eslint jsx-a11y/href-no-hash:"off" */
 /* I discourage you from leaving the above disabled - I've only done this as this is a demo app. */
-
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { routerContext as RouterType } from 'react-router/PropTypes';
-import { connect } from 'react-redux';
-import axios from 'axios';
-
-import { signOut } from '../auth/actions';
 
 import type { Auth, Router } from '../../types';
 
-type Props = {
-  auth: Auth,
-  dispatch: Function
-};
-
-type Context = {
-  router: Router
-}
+import { SignLink } from '../auth';
 
 class Navigation extends React.Component {
-  props: Props;
-  context: Context;
+  context: { router: Router };
+  contextTypes = { router: RouterType.isRequired }
+  props: { auth: Auth, dispatch: Function };
 
-  handleSignOut() {
-    this.props.dispatch(signOut(success => {
-        this.context.router.transitionTo('/');
-    }));    
-  }
+  renderAdminMenu(roles) {
+    if (!roles.some(r => r === 'ROLE_ADMIN')) {
+      return null;
+    }
 
-  adminMenu() {
-    return this.props.auth.roles.some(r => r === 'ROLE_ADMIN')
-      ? (<li className="dropdown">
+    return (
+      <li className="dropdown">
         <a
           href="#"
           className="dropdown-toggle"
@@ -49,19 +37,7 @@ class Navigation extends React.Component {
           <li role="separator" className="divider" />
           <li><a href="#">Separated link</a></li>
         </ul>
-      </li>)
-      : null;
-  }
-
-  authLink() {
-    if (!this.props.auth.signedIn) {
-      return <Link to="/signin">Sign In</Link>;
-    }
-
-    return (
-      <div className="navbar-form" style={{ paddingLeft: 0, paddingRight: 0 }}>
-        <button className="btn btn-link" onClick={() => this.handleSignOut()}>Sign Out</button>
-      </div>
+      </li>
     );
   }
 
@@ -87,10 +63,10 @@ class Navigation extends React.Component {
           </div>
           <div id="navbar" className="collapse navbar-right navbar-collapse">
             <ul className="nav navbar-nav">
-              {this.adminMenu()}
+              {this.renderAdminMenu(this.props.auth.roles)}
               <li><Link to="/">Home</Link></li>
               <li><Link to="/add">Add Comment</Link></li>
-              <li>{this.authLink()}</li>
+              <li><SignLink/></li>
             </ul>
           </div>
         </div>
@@ -98,10 +74,6 @@ class Navigation extends React.Component {
     );
   }
 }
-
-Navigation.contextTypes = {
-  router: RouterType.isRequired
-};
 
 /* Inject auth state and a dispatch() wrapper into props */
 export default connect(state => ({ auth: state.auth }))(Navigation);

@@ -9,14 +9,14 @@ import type { Router } from '../../types';
 import { saveComment } from './actions';
 
 class AddComment extends React.Component {
-  props: { dispatch: Function };
   context: { router: Router };
+  props: { dispatch: Function };
 
   authorInput : HTMLInputElement;
   contentInput: HTMLInputElement;
 
-  handleSaveComment(e) {
-    e.preventDefault();
+  handleSaveComment(event) {
+    event.preventDefault();
 
     const author = this.authorInput;
     const content = this.contentInput;

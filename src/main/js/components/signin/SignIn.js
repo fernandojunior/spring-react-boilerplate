@@ -9,14 +9,11 @@ import { signIn } from '../auth/actions';
 
 import type { Router } from '../../types';
 
-type State = {
-  authFailed: boolean
-};
-
 class SignIn extends React.Component {
   context: { router: Router };
+  contextTypes = { router: RouterType.isRequired };
   props: { dispatch: Function, location: Object };
-  state: State;
+  state: { authFailed: boolean };
 
   usernameInput : HTMLInputElement;
   passwordInput: HTMLInputElement;
@@ -32,7 +29,7 @@ class SignIn extends React.Component {
     const username = this.usernameInput.value.trim();
     const password = this.passwordInput.value.trim();
 
-    if (username.length === 0) {
+    if (username.length === 0 || password.length === 0) {
       return;
     }
 
@@ -48,8 +45,8 @@ class SignIn extends React.Component {
     ));
   }
 
-  authFailedMessage() {
-    if (!this.state.authFailed) {
+  renderAuthFailedMessage(authFailed) {
+    if (!authFailed) {
       return null;
     }
 
@@ -70,7 +67,7 @@ class SignIn extends React.Component {
             <h1>Sign In</h1>
           </div>
         </div>
-        {this.authFailedMessage()}
+        {this.renderAuthFailedMessage(this.state.authFailed)}
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3 form-group">
             <label htmlFor="userInput">Username</label>
@@ -88,10 +85,6 @@ class SignIn extends React.Component {
     );
   }
 }
-
-SignIn.contextTypes = {
-  router: RouterType.isRequired
-};
 
 function mapStateToProps(state) {
   return { auth: state.auth };

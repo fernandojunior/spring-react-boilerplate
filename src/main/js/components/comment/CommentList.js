@@ -9,18 +9,12 @@ import Comment from './Comment';
 import './CommentList.less';
 import { refreshComments } from './actions';
 
-type Props = {
-  status: string,
-  comments: Array<{
-    id: number,
-    content: string,
-    author: string
-  }>,
-  dispatch: Dispatch
-};
-
 class CommentList extends React.Component {
-  props: Props;
+  props: {
+    status: string,
+    comments: Array<{ id: number, content: string, author: string }>,
+    dispatch: Dispatch
+  };
 
   componentDidMount() {
     if (this.props.status === 'stale') {

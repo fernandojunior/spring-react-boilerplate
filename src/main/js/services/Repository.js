@@ -18,15 +18,14 @@ class Repository {
      .catch(error => errorLogger(error, onError));
   }
 
-  findAll(onSuccess) {
+  findAll(onSuccess, onError) {
     return this.search({ size: Math.pow(10, 6) })
       .then(onSuccess)
       .catch(error => errorLogger(error, onError));
   }
 
-  search(options, onSuccess) {
-    let url = this.url + "?" + this.buildSearchParameters(options);
-    return axios.get(url)
+  search(options, onSuccess, onError) {
+    return axios.get(this.url + "?" + this.buildSearchParameters(options))
       .then(onSuccess)
       .catch(error => errorLogger(error, onError));
   }
@@ -38,15 +37,18 @@ class Repository {
     return `${ paginationParams}&${ filterParams }`;
   }
 
-  save(data, onSuccess) {
-    let promise = null;
-    if (data && data.id)
-      promise = axios.put(this.url + "/" + id, data);
-    else
-      promise = axios.post(this.url, data);
+  save(data, onSuccess, onError) {
+    let promise = (data && data.id) ? axios.put(this.url + "/" + id, data) : axios.post(this.url, data);
+
     return promise
       .then(onSuccess)
       .catch(error => errorLogger(error, onError));
+  }
+
+  delete(id, onSuccess, onError) {
+    return axios.delete(this.url + '/' + id)
+     .then(onSuccess)
+     .catch(error => errorLogger(error, onError));
   }
 
 };
