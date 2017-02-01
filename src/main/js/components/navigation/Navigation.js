@@ -12,7 +12,6 @@ import { SignLink } from '../auth';
 
 class Navigation extends React.Component {
   context: { router: Router };
-  contextTypes = { router: RouterType.isRequired }
   props: { auth: Auth, dispatch: Function };
 
   renderAdminMenu(roles) {
@@ -74,6 +73,10 @@ class Navigation extends React.Component {
     );
   }
 }
+
+Navigation.contextTypes = {
+  router: RouterType.isRequired
+};
 
 /* Inject auth state and a dispatch() wrapper into props */
 export default connect(state => ({ auth: state.auth }))(Navigation);

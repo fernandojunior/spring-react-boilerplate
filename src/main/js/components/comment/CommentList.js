@@ -2,14 +2,16 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { routerContext as RouterType } from 'react-router/PropTypes';
 
-import type { Dispatch } from '../../types';
+import type { Dispatch, Router } from '../../types';
 
 import Comment from './Comment';
 import './CommentList.less';
-import { refreshComments } from './actions';
+import { deleteComment, refreshComments } from './actions';
 
 class CommentList extends React.Component {
+  context: { router: Router };
   props: {
     status: string,
     comments: Array<{ id: number, content: string, author: string }>,
@@ -26,8 +28,19 @@ class CommentList extends React.Component {
     this.props.dispatch(refreshComments());
   }
 
-  renderComment({content, author, id}) {
-    return (<Comment author={author} content={content} key={id} />);
+  handleDeleteComment(id) {
+    this.props.dispatch(deleteComment(id, success => {
+      this.componentDidMount();
+    }));
+  }
+
+  renderComment({ content, author, id }) {
+    return (
+      <div>
+        <Comment author={author} content={content} key={id} />
+        <button className="btn btn-default" onClick={e => this.handleDeleteComment(id)}>Remove</button>
+      </div>
+    );
   }
 
   render() {
@@ -41,11 +54,15 @@ class CommentList extends React.Component {
         </div>
         { this.props.comments.length === 0
             ? <p>No comments yet! You could add one&hellip;?</p>
-            : this.props.comments.map(this.renderComment) }
+            : this.props.comments.map(this.renderComment.bind(this)) }
       </div>
     );
   }
 }
+
+CommentList.contextTypes = {
+  router: RouterType.isRequired
+};
 
 function mapStateToProps(state) {
   return {

@@ -23,6 +23,7 @@ export type Comment = { author : string, comment : string };
 export type Action =
     { type: 'ADD_COMMENT', comment: Comment }
   | { type: 'COMMENTS_REFRESHED', comments: Comment[] }
+  | { type: 'DELETE_COMMENT' }
   | { type: 'LOGGED_IN', auth: AuthState }
   | { type: 'LOGGED_OUT' };
 
@@ -41,4 +42,3 @@ export type Router = {
   blockTransitions: Function,
   createHref: Function
 };
-

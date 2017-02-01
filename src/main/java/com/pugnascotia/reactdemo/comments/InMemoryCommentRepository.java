@@ -37,6 +37,11 @@ public class InMemoryCommentRepository implements CommentRepository {
     }
 
     @Override
+    public void delete(Long id) {
+        this.comments.remove(id);
+    }
+
+    @Override
     public Iterable<Comment> findAll() {
         return this.comments.values();
     }

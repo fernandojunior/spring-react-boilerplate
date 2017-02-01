@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { routerContext as RouterType } from 'react-router/PropTypes';
 
 import type { Auth, Router } from '../../types';
 
@@ -25,6 +26,10 @@ class SignLink extends React.Component {
   }
 
 }
+
+SignLink.contextTypes = {
+  router: RouterType.isRequired
+};
 
 /* Inject auth state and a dispatch() wrapper into props */
 export default connect(state => ({ auth: state.auth }))(SignLink);

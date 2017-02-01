@@ -16,6 +16,12 @@ function commentReducer(state : CommentListState = { status: 'stale', data: [] }
         data: state.data.concat(action.comment)
       };
 
+    case actionTypes.DELETE_COMMENT:
+      return {
+        status: 'stale',
+        data: []
+      };
+
     case actionTypes.COMMENTS_REFRESHED:
       return {
         status: 'loaded',

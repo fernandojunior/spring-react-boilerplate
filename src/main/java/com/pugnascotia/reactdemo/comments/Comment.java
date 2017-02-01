@@ -40,4 +40,9 @@ public class Comment {
         this.content = content;
     }
 
+    @Override
+    public String toString() {
+        return "Comment [id=" + id + ", author=" + author + ", content=" + content + "]";
+    }
+
 }

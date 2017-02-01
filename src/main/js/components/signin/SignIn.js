@@ -11,7 +11,6 @@ import type { Router } from '../../types';
 
 class SignIn extends React.Component {
   context: { router: Router };
-  contextTypes = { router: RouterType.isRequired };
   props: { dispatch: Function, location: Object };
   state: { authFailed: boolean };
 
@@ -85,6 +84,10 @@ class SignIn extends React.Component {
     );
   }
 }
+
+SignIn.contextTypes = {
+  router: RouterType.isRequired
+};
 
 function mapStateToProps(state) {
   return { auth: state.auth };
