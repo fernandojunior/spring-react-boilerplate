@@ -9,7 +9,7 @@ type CommentsState = {
 
 function commentsReducer(state : CommentsState = { data: [] }, action : Object) : CommentsState {
   switch (action.type) {
-    case actionTypes.ADD_COMMENT:
+    case actionTypes.SAVE_COMMENT:
       return {
         data: state.data.concat(action.comment)
       };

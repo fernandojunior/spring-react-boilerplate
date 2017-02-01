@@ -10,13 +10,13 @@ type AuthState = {
 
 function authReducer(state : AuthState = { signedIn: false, roles: [] }, action : Object) : AuthState {
   switch (action.type) {
-    case actionTypes.LOGGED_IN:
+    case actionTypes.LOG_IN:
       return Object.assign({}, state, {
         signedIn: action.auth.signedIn,
         roles: action.auth.roles
       });
 
-    case actionTypes.LOGGED_OUT:
+    case actionTypes.LOG_OUT:
       return Object.assign({}, state, {
         signedIn: false,
         roles: ['ROLE_ANONYMOUS']

@@ -6,7 +6,7 @@ import { Errors } from '../errors';
 import { MatchWhenAuthorized } from '../match';
 import { SignIn } from '../signin';
 import { Navigation } from '../navigation';
-import { AddComment, CommentList } from '../comment';
+import { CommentList, AddComment } from '../comment';
 
 const App = () => (
   <div>
