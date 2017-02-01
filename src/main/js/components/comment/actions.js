@@ -6,7 +6,7 @@ import { commentsService } from '../../services';
 export const actionTypes = {
   ADD_COMMENT: 'ADD_COMMENT',
   DELETE_COMMENT: 'DELETE_COMMENT',
-  COMMENTS_REFRESHED: 'COMMENTS_REFRESHED'
+  FIND_ALL_COMMENTS: 'FIND_ALL_COMMENTS'
 }
 
 export function saveComment(author : string, content : string) : ThunkAction {
@@ -32,7 +32,7 @@ export function deleteComment(id : number, onSuccess: Function) : ThunkAction {
 export function refreshComments() : ThunkAction {
   return dispatch => commentsService.findAll(
     success => dispatch({
-      type: actionTypes.COMMENTS_REFRESHED,
+      type: actionTypes.FIND_ALL_COMMENTS,
       comments: success.data
     })
   );

@@ -3,28 +3,22 @@ import type { Action, Comment } from '../../types';
 
 import { actionTypes } from './actions';
 
-type CommentListState = {
-  status: 'stale' | 'loaded',
+type CommentsState = {
   data: Comment[]
 }
 
-function commentReducer(state : CommentListState = { status: 'stale', data: [] }, action : Action) : CommentListState {
+function commentsReducer(state : CommentsState = { data: [] }, action : Action) : CommentsState {
   switch (action.type) {
     case actionTypes.ADD_COMMENT:
       return {
-        status: state.status,
         data: state.data.concat(action.comment)
       };
 
     case actionTypes.DELETE_COMMENT:
-      return {
-        status: 'stale',
-        data: []
-      };
+      return state;
 
-    case actionTypes.COMMENTS_REFRESHED:
+    case actionTypes.FIND_ALL_COMMENTS:
       return {
-        status: 'loaded',
         data: action.comments
       };
 
@@ -33,4 +27,4 @@ function commentReducer(state : CommentListState = { status: 'stale', data: [] }
   }
 }
 
-export default commentReducer;
+export default commentsReducer;

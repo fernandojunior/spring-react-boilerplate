@@ -1,7 +1,7 @@
 /* @flow */
 import { actionTypes } from './actions';
 
-import type { Action, Role, AuthState } from '../../types';
+import type { Action, AuthState, Role} from '../../types';
 
 function authReducer(state : AuthState = { signedIn: false, roles: [] }, action : Action) : AuthState {
   switch (action.type) {

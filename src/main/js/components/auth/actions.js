@@ -1,5 +1,5 @@
 /* @flow */
-import type { Action, AuthState, ThunkAction } from '../../types';
+import type { Action, ThunkAction } from '../../types';
 
 import { authService } from '../../services';
 

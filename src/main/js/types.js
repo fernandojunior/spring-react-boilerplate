@@ -8,21 +8,21 @@ export type Auth = {
   signedIn: boolean
 };
 
-export type Role =
-    'ROLE_ADMIN'
-  | 'ROLE_USER'
-  | 'ROLE_ANONYMOUS';
-
 export type AuthState = {
   signedIn: boolean,
   roles: Role[]
 };
 
+export type Role =
+    'ROLE_ADMIN'
+  | 'ROLE_USER'
+  | 'ROLE_ANONYMOUS';
+
 export type Comment = { author : string, comment : string };
 
 export type Action =
     { type: 'ADD_COMMENT', comment: Comment }
-  | { type: 'COMMENTS_REFRESHED', comments: Comment[] }
+  | { type: 'FIND_ALL_COMMENTS', comments: Comment[] }
   | { type: 'DELETE_COMMENT' }
   | { type: 'LOGGED_IN', auth: AuthState }
   | { type: 'LOGGED_OUT' };

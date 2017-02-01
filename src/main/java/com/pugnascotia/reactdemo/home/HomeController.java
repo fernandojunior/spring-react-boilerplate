@@ -36,8 +36,7 @@ public class HomeController {
 
     private Map<String, Object> getCommentsState() {
         Map<String, Object> state = new HashMap<>();
-        state.put("status", "loaded");
-        state.put("data", repository.findAll());
+//        state.put("data", repository.findAll());
         return state;
     }
 }

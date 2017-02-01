@@ -13,15 +13,12 @@ import { deleteComment, refreshComments } from './actions';
 class CommentList extends React.Component {
   context: { router: Router };
   props: {
-    status: string,
     comments: Array<{ id: number, content: string, author: string }>,
     dispatch: Dispatch
   };
 
   componentDidMount() {
-    if (this.props.status === 'stale') {
-      this.handleRefreshComments();
-    }
+    this.handleRefreshComments();
   }
 
   handleRefreshComments() {
@@ -52,7 +49,7 @@ class CommentList extends React.Component {
           {' '}
           <button className="btn btn-default" onClick={() => this.handleRefreshComments()}>Refresh</button>
         </div>
-        { this.props.comments.length === 0
+        { (!this.props.comments || this.props.comments.length === 0)
             ? <p>No comments yet! You could add one&hellip;?</p>
             : this.props.comments.map(this.renderComment.bind(this)) }
       </div>
@@ -66,7 +63,6 @@ CommentList.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    status: state.comments.status,
     comments: state.comments.data
   };
 }
