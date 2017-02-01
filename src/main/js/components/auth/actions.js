@@ -1,5 +1,5 @@
 /* @flow */
-import type { Action, ThunkAction } from '../../types';
+import type { ThunkAction } from '../../types';
 
 import { authService } from '../../services';
 
@@ -12,10 +12,7 @@ export function signIn(username: string, password: string, onSuccess: Function, 
   return dispatch => {
     authService.signIn(username, password)
       .then(success => {
-        dispatch({
-          type: actionTypes.LOGGED_IN,
-          auth: success.data
-        });
+        dispatch({ type: actionTypes.LOGGED_IN, auth: success.data });
         onSuccess(success);
       })
       .catch(error => {

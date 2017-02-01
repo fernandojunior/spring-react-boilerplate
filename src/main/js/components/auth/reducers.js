@@ -1,9 +1,14 @@
 /* @flow */
 import { actionTypes } from './actions';
 
-import type { Action, AuthState, Role} from '../../types';
+import type { Role} from '../../types';
 
-function authReducer(state : AuthState = { signedIn: false, roles: [] }, action : Action) : AuthState {
+type AuthState = {
+  signedIn: boolean,
+  roles: Role[]
+};
+
+function authReducer(state : AuthState = { signedIn: false, roles: [] }, action : Object) : AuthState {
   switch (action.type) {
     case actionTypes.LOGGED_IN:
       return Object.assign({}, state, {

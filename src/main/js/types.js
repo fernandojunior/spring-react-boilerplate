@@ -3,14 +3,11 @@
 /* Inspired by https://github.com/fbsamples/f8app/blob/master/js/actions/types.js */
 // TODO decouple module
 
+const Action = Object
+
 export type Auth = {
   roles: String[],
   signedIn: boolean
-};
-
-export type AuthState = {
-  signedIn: boolean,
-  roles: Role[]
 };
 
 export type Role =
@@ -20,14 +17,7 @@ export type Role =
 
 export type Comment = { author : string, comment : string };
 
-export type Action =
-    { type: 'ADD_COMMENT', comment: Comment }
-  | { type: 'FIND_ALL_COMMENTS', comments: Comment[] }
-  | { type: 'DELETE_COMMENT' }
-  | { type: 'LOGGED_IN', auth: AuthState }
-  | { type: 'LOGGED_OUT' };
-
-export type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
+export type Dispatch = (action: Object | ThunkAction | PromiseAction | Array<Action>) => any;
 export type GetState = () => Object;
 export type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 export type PromiseAction = Promise<Action>;
