@@ -13,9 +13,9 @@ const App = () => (
     <Navigation />
 
     <div className="container">
-      <Match exactly pattern="/" component={CommentList} />
-      <MatchWhenAuthorized pattern="/add" component={AddComment} />
-      <Match pattern="/signin" component={SignIn} />
+      <Match exactly location="hash" pattern="/" component={CommentList} />
+      <MatchWhenAuthorized pattern="/add" location="hash" component={AddComment} />
+      <Match pattern="/signin" location="hash" component={SignIn} />
       <Miss component={Errors} />
     </div>
   </div>
