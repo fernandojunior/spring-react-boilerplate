@@ -11,13 +11,13 @@ import static foo.bar.utils.State.populateModel;
 /**
  * Handles a request for the signin page and renders the app. React Router takes care of showing the right page.
  */
-
 @Controller
-public class AccountController {
+public class SessionController {
 
     @RequestMapping("/signin")
     public String showSignIn(Model model, HttpServletRequest request) {
         populateModel(model, request);
         return "index";
     }
+
 }

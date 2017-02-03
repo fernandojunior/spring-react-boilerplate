@@ -1,4 +1,4 @@
-package foo.bar.controllers;
+package foo.bar.resources;
 
 import java.util.Map;
 
@@ -16,13 +16,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  *
  * @see AjaxLogoutSuccessHandler for how this is used.
  */
-
 @RestController
 @RequestMapping(value = "/api", produces = APPLICATION_JSON_VALUE)
-public class AccountResource {
+public class SessionResource {
 
-    @RequestMapping("/account")
-    public Map<String, Object> getAccountStatus(HttpServletRequest request) {
+    @RequestMapping("/session")
+    public Map<String, Object> getSessionStatus(HttpServletRequest request) {
         return State.getAuthState(request);
     }
 

@@ -49,9 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/", "/signin", "/api/account", "/api/comments").permitAll().anyRequest()
-                .authenticated().and().formLogin().loginPage("/signin").loginProcessingUrl("/api/signin")
-                .successHandler(authSuccessHandler).failureHandler(authFailureHandler).permitAll().and()
+        http.authorizeRequests().antMatchers("/", "/signin", "/api/session", "/api/comments").permitAll().anyRequest()
+                .authenticated().and().formLogin().loginProcessingUrl("/api/signin").successHandler(authSuccessHandler)
+                .failureHandler(authFailureHandler).permitAll().and()
                 .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class).csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and().logout().logoutUrl("/api/signout")
                 .logoutSuccessHandler(logoutSuccessHandler).permitAll();

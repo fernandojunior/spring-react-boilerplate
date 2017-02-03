@@ -24,12 +24,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/error")
-public class ReactErrorController extends AbstractErrorController {
+public class ErrorController extends AbstractErrorController {
 
     private final ServerProperties serverProperties;
 
     @Inject
-    public ReactErrorController(ErrorAttributes errorAttributes, ServerProperties serverProperties) {
+    public ErrorController(ErrorAttributes errorAttributes, ServerProperties serverProperties) {
         super(errorAttributes);
         this.serverProperties = serverProperties;
     }
@@ -78,4 +78,5 @@ public class ReactErrorController extends AbstractErrorController {
         }
         return false;
     }
+
 }

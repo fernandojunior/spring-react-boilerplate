@@ -1,4 +1,4 @@
-package foo.bar.controllers;
+package foo.bar.resources;
 
 import javax.inject.Inject;
 
