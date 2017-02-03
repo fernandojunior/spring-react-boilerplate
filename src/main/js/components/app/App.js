@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react';
-import { Match, Miss } from 'react-router';
+import { Match, Miss, HashRouter } from 'react-router';
 
 import { Errors } from '../errors';
 import { MatchWhenAuthorized } from '../match';
@@ -10,14 +10,17 @@ import { CommentList, AddComment } from '../comment';
 
 const App = () => (
   <div>
-    <Navigation />
-
-    <div className="container">
-      <Match exactly location="hash" pattern="/" component={CommentList} />
-      <MatchWhenAuthorized pattern="/add" location="hash" component={AddComment} />
-      <Match pattern="/signin" location="hash" component={SignIn} />
-      <Miss component={Errors} />
-    </div>
+      <HashRouter>
+          <div>
+            <Navigation />
+            <div className="container">
+              <Match exactly pattern="/" component={CommentList} />
+              <MatchWhenAuthorized pattern="/add" component={AddComment} />
+              <Match pattern="/signin" component={SignIn} />
+              <Miss component={Errors} />
+            </div>
+          </div>
+      </HashRouter>
   </div>
 );
 

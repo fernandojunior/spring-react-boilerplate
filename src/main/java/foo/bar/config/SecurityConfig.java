@@ -44,14 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/app/**", "/bower_components/**", "/js/**", "/favicon.ico");
+        web.ignoring().antMatchers("/index.html", "/app/**", "/bower_components/**", "/favicon.ico");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/", "/signin", "/api/session", "/api/comments").permitAll().anyRequest()
-                .authenticated().and().formLogin().loginProcessingUrl("/api/signin").successHandler(authSuccessHandler)
-                .failureHandler(authFailureHandler).permitAll().and()
+        http.authorizeRequests().antMatchers("/", "/api/session", "/api/comments").permitAll().anyRequest()
+                .authenticated().and().formLogin().loginPage("/signin").loginProcessingUrl("/api/signin")
+                .successHandler(authSuccessHandler).failureHandler(authFailureHandler).permitAll().and()
                 .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class).csrf()
                 .csrfTokenRepository(csrfTokenRepository()).and().logout().logoutUrl("/api/signout")
                 .logoutSuccessHandler(logoutSuccessHandler).permitAll();
