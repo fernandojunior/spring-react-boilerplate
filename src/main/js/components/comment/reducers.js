@@ -1,13 +1,10 @@
-/* @flow */
-import type { Comment } from '../../types';
-
 import { actionTypes } from './actions';
 
 type CommentsState = {
   data: Comment[]
 }
 
-function commentsReducer(state : CommentsState = { data: [] }, action : Object) : CommentsState {
+function commentsReducer(state = { data: [] }, action) {
   switch (action.type) {
     case actionTypes.SAVE_COMMENT:
       return {

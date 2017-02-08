@@ -1,5 +1,4 @@
-/* @flow */
-function errorsReducer(state : Object = {} /* , action */) : Object {
+function errorsReducer(state = {} /* , action */) {
   return state;
 }
 

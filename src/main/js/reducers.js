@@ -1,4 +1,3 @@
-/* @flow */
 import { combineReducers } from 'redux';
 import authReducer from './components/auth/reducers';
 import errorsReducer from './components/errors/reducers';

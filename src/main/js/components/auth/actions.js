@@ -1,4 +1,3 @@
-/* @flow */
 import type { ThunkAction } from '../../types';
 
 import { authService } from '../../services';
@@ -8,7 +7,7 @@ export const actionTypes = {
   LOG_OUT: 'LOG_OUT'
 };
 
-export function signIn(username: string, password: string, onSuccess: Function, onError: Function) : ThunkAction {
+export function signIn(username, password, onSuccess, onError) {
   return dispatch => authService.signIn(username, password)
     .then(success => {
       dispatch({ type: actionTypes.LOG_IN, auth: success.data });
@@ -21,7 +20,7 @@ export function signIn(username: string, password: string, onSuccess: Function, 
     });
 }
 
-export function signOut(onSuccess: Function, onError?: Function) : ThunkAction {
+export function signOut(onSuccess, onError) {
   return dispatch => authService.signOut()
     .then(success => {
       dispatch({ type: actionTypes.LOG_OUT });

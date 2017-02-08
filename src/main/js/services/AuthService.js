@@ -1,9 +1,8 @@
-/* @flow */
 import axios from 'axios';
 
 class AuthService {
 
-  signIn(username : string, password: string) : Object {
+  signIn(username, password) : Object {
     const data = `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
       return axios.post('/api/signin', data);
   }

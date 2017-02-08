@@ -1,8 +1,6 @@
-/* @flow */
-
 /* React, browser and server rendering functions. We need the
  * first import, even though it isn't explicitly referenced
- * in this file, in order to avoid runtime errors. 
+ * in this file, in order to avoid runtime errors.
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -42,7 +40,7 @@ if (typeof window !== 'undefined') {
  * @returns string the rendered page
  */
 // eslint-disable-next-line import/prefer-default-export
-export function render(path : string, state : Object) {
+export function render(path, state) {
   const store = createStore(state);
 
   // first create a context for <ServerRouter>, it's where we keep the

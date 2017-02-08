@@ -1,4 +1,3 @@
-/* @flow */
 import React from 'react';
 import { Match, Miss, HashRouter } from 'react-router';
 

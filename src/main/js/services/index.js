@@ -1,4 +1,3 @@
-/* @flow */
 import AuthService from './AuthService';
 import Repository from './Repository';
 

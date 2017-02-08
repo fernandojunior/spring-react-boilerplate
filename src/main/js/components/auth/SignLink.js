@@ -12,6 +12,7 @@ class SignLink extends React.Component {
   context: { router: Router };
   props: { auth: Auth, dispatch: Function };
 
+
   handleSignOut() {
     this.props.dispatch(signOut(success => {
         this.context.router.transitionTo('/');
@@ -26,6 +27,12 @@ class SignLink extends React.Component {
   }
 
 }
+
+// https://github.com/SophieDeBenedetto/catbook-redux/blob/82a66a41dbfbdfdb2890f377e56755e023f054ad/src/components/cats/NewCatPage.js
+//SignLink.propTypes = {
+//  auth: PropTypes.object,
+//  dispatch: PropTypes.func
+//}
 
 SignLink.contextTypes = {
   router: RouterType.isRequired
