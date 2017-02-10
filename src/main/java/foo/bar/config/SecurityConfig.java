@@ -12,22 +12,22 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
-import foo.bar.config.authentication.AjaxAuthenticationFailureHandler;
-import foo.bar.config.authentication.AjaxAuthenticationSuccessHandler;
-import foo.bar.config.authentication.AjaxLogoutSuccessHandler;
+import foo.bar.core.security.RestAuthenticationFailureHandler;
+import foo.bar.core.security.RestAuthenticationSuccessHandler;
+import foo.bar.core.security.RestLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Inject
-    private AjaxAuthenticationSuccessHandler authSuccessHandler;
+    private RestAuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Inject
-    private AjaxAuthenticationFailureHandler authFailureHandler;
+    private RestAuthenticationFailureHandler authenticationFailureHandler;
 
     @Inject
-    private AjaxLogoutSuccessHandler logoutSuccessHandler;
+    private RestLogoutSuccessHandler logoutSuccessHandler;
 
     /**
      * Demo-only users. Replace this with a real authentication config.
@@ -47,14 +47,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/index.html", "/app/**", "/bower_components/**", "/favicon.ico");
     }
 
+    public void configurePermissions(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/", "/api/session", "/api/comments").permitAll().anyRequest()
+                .authenticated();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/", "/api/session", "/api/comments").permitAll().anyRequest()
-                .authenticated().and().formLogin().loginPage("/signin").loginProcessingUrl("/api/signin")
-                .successHandler(authSuccessHandler).failureHandler(authFailureHandler).permitAll().and()
-                .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class).csrf()
-                .csrfTokenRepository(csrfTokenRepository()).and().logout().logoutUrl("/api/signout")
-                .logoutSuccessHandler(logoutSuccessHandler).permitAll();
+        // permissions
+        configurePermissions(http);
+
+        // login handling
+        http.formLogin().loginPage("/signin").loginProcessingUrl("/api/signin")
+                .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).permitAll();
+
+        // logout handling
+        http.logout().logoutUrl("/api/signout").logoutSuccessHandler(logoutSuccessHandler).permitAll();
+
+        // CSRF tokens handling
+        http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class).csrf().csrfTokenRepository(csrfTokenRepository());
     }
 
     /**
@@ -66,4 +77,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         repository.setHeaderName("X-XSRF-TOKEN");
         return repository;
     }
+
 }

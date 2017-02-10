@@ -1,4 +1,4 @@
-package foo.bar.config.authentication;
+package foo.bar.core.security;
 
 import java.io.IOException;
 import javax.inject.Inject;
@@ -8,24 +8,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import foo.bar.core.utils.Cookies;
+import foo.bar.core.utils.State;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import foo.bar.utils.Cookies;
-import foo.bar.utils.State;
 
 /**
  * A handler that returns HTTP 200 OK for successful authentications, and includes the user's roles in the response
  * body.
  */
-
 @Component
-public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final ObjectMapper mapper;
 
     @Inject
-    public AjaxAuthenticationSuccessHandler(ObjectMapper mapper) {
+    public RestAuthenticationSuccessHandler(ObjectMapper mapper) {
         this.mapper = mapper;
     }
 

@@ -1,4 +1,4 @@
-package foo.bar.utils;
+package foo.bar.core.utils;
 
 import java.util.Spliterator;
 import java.util.stream.Stream;

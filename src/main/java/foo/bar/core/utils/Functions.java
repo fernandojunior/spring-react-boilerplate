@@ -1,11 +1,11 @@
-package foo.bar.utils;
+package foo.bar.core.utils;
+
+import static foo.bar.core.utils.Streams.asStream;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static foo.bar.utils.Streams.asStream;
 
 /**
  * Utility methods for making it easier to map over a Java list.

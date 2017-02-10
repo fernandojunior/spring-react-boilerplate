@@ -1,4 +1,4 @@
-package foo.bar.utils;
+package foo.bar.core.utils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

@@ -1,11 +1,10 @@
-package foo.bar.controllers;
+package foo.bar.core.controllers;
 
 import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import foo.bar.utils.State;
 import org.springframework.boot.autoconfigure.web.AbstractErrorController;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
@@ -16,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import foo.bar.core.utils.State;
 
 /**
  * Largely pinched from {@link org.springframework.boot.autoconfigure.web.BasicErrorController} and customised to render

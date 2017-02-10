@@ -1,19 +1,24 @@
-package foo.bar.entities;
+package foo.bar.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Simple data container class. We need a no-args constructor so that Jackson can deserialise these.
  */
+@Entity
 public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String author;
     private String content;
 
     public Comment() {
-    }
-
-    public Comment(String author, String content) {
-        setAuthor(author);
-        setContent(content);
     }
 
     public Long getId() {
