@@ -1,1 +1,1 @@
-export { default as Errors } from './Errors.js';
+export { default } from './Errors.js';

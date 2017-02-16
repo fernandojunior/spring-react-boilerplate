@@ -1,21 +1,13 @@
-/* @flow */
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { routerContext as RouterType } from '../../propTypes';
-
-import type { Dispatch, Router } from '../../types';
+import { RouterType } from '../../propTypes';
 
 import Comment from './Comment';
-import './CommentList.less';
 import { deleteComment, refreshComments } from './actions';
+import './CommentList.less';
 
 class CommentList extends React.Component {
-  context: { router: Router };
-  props: {
-    comments: Array<{ id: number, content: string, author: string }>,
-    dispatch: Dispatch
-  };
 
   componentDidMount() {
     this.handleRefreshComments();
@@ -60,6 +52,11 @@ class CommentList extends React.Component {
 CommentList.contextTypes = {
   router: RouterType.isRequired
 };
+
+CommentList.propTypes = {
+  comments: React.PropTypes.arrayOf(React.PropTypes.object),
+  dispatch: React.PropTypes.func.isRequired
+}
 
 function mapStateToProps(state) {
   return {

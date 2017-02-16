@@ -1,18 +1,11 @@
-/* @flow */
-/* eslint jsx-a11y/href-no-hash:"off" */
-/* I discourage you from leaving the above disabled - I've only done this as this is a demo app. */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { routerContext as RouterType } from '../../propTypes';
-
-import type { Auth, Router } from '../../types';
+import { Link } from 'react-router-dom';
+import { RouterType } from '../../propTypes';
 
 import { SignLink } from '../auth';
 
 class Navigation extends React.Component {
-  context: { router: Router };
-  props: { auth: Auth, dispatch: Function };
 
   renderAdminMenu(roles) {
     if (!roles.some(r => r === 'ROLE_ADMIN')) {
@@ -77,6 +70,11 @@ class Navigation extends React.Component {
 Navigation.contextTypes = {
   router: RouterType.isRequired
 };
+
+Navigation.propTypes = {
+  auth: React.PropTypes.object.isRequired,
+  dispatch: React.PropTypes.func.isRequired
+}
 
 /* Inject auth state and a dispatch() wrapper into props */
 export default connect(state => ({ auth: state.auth }))(Navigation);

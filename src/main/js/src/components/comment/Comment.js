@@ -1,10 +1,9 @@
-/* @flow */
 import React from 'react';
 
-const Comment = (props : { content: string, author : string }) => (
+const Comment = ({ content, author }) => (
   <div className="message">
-    <h3>{props.content}</h3>
-    <p>By {props.author}</p>
+    <h3>{content}</h3>
+    <p>By {author}</p>
   </div>
 );
 

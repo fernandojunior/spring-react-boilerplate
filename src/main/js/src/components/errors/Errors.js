@@ -1,4 +1,3 @@
-/* @flow */
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -16,19 +15,19 @@ const NotFound = () => (
   </div>
 );
 
-type Props = {
-  errors: {
-    // error: string,
-    // exception: string,
-    // message: string,
-    // path: string,
-    // timestamp: number,
-    status: number
-  }
-};
+// type Props = {
+//   errors: {
+//     // error: string,
+//     // exception: string,
+//     // message: string,
+//     // path: string,
+//     // timestamp: number,
+//     status: number
+//   }
+// };
 
-const Errors = (props : Props) => {
-  switch (props.errors.status) {
+const Errors = ({ errors }) => {
+  switch (errors.status) {
     case 500:
       return <ServerError />;
     case 404:

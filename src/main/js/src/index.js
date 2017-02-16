@@ -4,15 +4,14 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
 
 // State management with redux
 import { Provider } from 'react-redux';
 
 // Routing with react-router
-import { BrowserRouter, ServerRouter, createServerRenderContext } from 'react-router';
+import { HashRouter } from 'react-router-dom';
 
-import { App } from './components/app';
+import App from './components/app';
 
 import createStore from './store';
 
@@ -22,55 +21,11 @@ if (typeof window !== 'undefined') {
 
   const app = (
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   );
 
   ReactDOM.render(app, document.getElementById('root'));
-}
-
-/**
- * Performs server-side rendering. The function is exported because the templating function
- * that Spring will call uses this function to perform the meat of the rendering.
- *
- * @param path the path to the resource requested by the client
- * @param state the Redux state supplied by Spring and massaged by the template engine
- * @returns string the rendered page
- */
-// eslint-disable-next-line import/prefer-default-export
-export function render(path, state) {
-  const store = createStore(state);
-
-  // first create a context for <ServerRouter>, it's where we keep the
-  // results of rendering for the second pass if necessary
-  const context = createServerRenderContext();
-
-  function doRender() {
-    return ReactDOMServer.renderToString(
-      <Provider store={store}>
-        <ServerRouter
-          location={path}
-          context={context}
-        >
-          <App />
-        </ServerRouter>
-      </Provider>
-    );
-  }
-
-  let markup = doRender();
-
-  const result = context.getResult();
-
-  // We ignore result.redirect because Spring should have handled that
-  // for us. If we got a miss, then perform a second render pass with
-  // the context to clue the <Miss> components into rendering
-  // this time (on the client they know from componentDidMount)
-  if (result.missed) {
-    markup = doRender();
-  }
-
-  return markup;
 }

@@ -1,18 +1,13 @@
-/* @flow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { routerContext as RouterType } from '../../propTypes';
+import { RouterType } from '../../propTypes';
 
-import { signIn } from '../auth/actions';
+import { signIn } from './actions';
 
 class SignIn extends React.Component {
-  state: { authFailed: boolean };
 
-  usernameInput : HTMLInputElement;
-  passwordInput: HTMLInputElement;
-
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.state = { authFailed: false };
   }
 
@@ -30,7 +25,7 @@ class SignIn extends React.Component {
       success => {
         const { location } = this.props;
         const nextPathname = location.state && location.state.nextPathname ? location.state.nextPathname : '/';
-        this.context.router.transitionTo(nextPathname);
+        this.context.router.replace(nextPathname);
       },
       error => {
         this.setState({ authFailed: true });
@@ -79,14 +74,14 @@ class SignIn extends React.Component {
   }
 }
 
+SignIn.contextTypes = {
+  router: RouterType.isRequired
+};
+
 SignIn.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   location: React.PropTypes.object.isRequired
 }
-
-SignIn.contextTypes = {
-  router: RouterType.isRequired
-};
 
 function mapStateToProps(state) {
   return { auth: state.auth };
