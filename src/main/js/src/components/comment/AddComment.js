@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { routerContext as RouterType } from 'react-router/PropTypes';
+import { routerContext as RouterType } from '../../propTypes';
 
 import type { Router } from '../../types';
 

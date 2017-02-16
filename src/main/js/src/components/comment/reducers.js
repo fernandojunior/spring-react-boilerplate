@@ -1,9 +1,5 @@
 import { actionTypes } from './actions';
 
-type CommentsState = {
-  data: Comment[]
-}
-
 function commentsReducer(state = { data: [] }, action) {
   switch (action.type) {
     case actionTypes.SAVE_COMMENT:

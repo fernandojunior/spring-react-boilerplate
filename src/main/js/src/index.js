@@ -28,7 +28,7 @@ if (typeof window !== 'undefined') {
     </Provider>
   );
 
-  ReactDOM.render(app, document.getElementById('mount'));
+  ReactDOM.render(app, document.getElementById('root'));
 }
 
 /**

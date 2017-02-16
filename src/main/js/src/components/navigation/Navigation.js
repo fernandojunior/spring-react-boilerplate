@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { routerContext as RouterType } from 'react-router/PropTypes';
+import { routerContext as RouterType } from '../../propTypes';
 
 import type { Auth, Router } from '../../types';
 

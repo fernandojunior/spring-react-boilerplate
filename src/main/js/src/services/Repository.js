@@ -38,7 +38,7 @@ class Repository {
   }
 
   save(data, onSuccess, onError) {
-    let promise = (data && data.id) ? axios.put(this.url + "/" + id, data) : axios.post(this.url, data);
+    let promise = (data && data.id) ? axios.put(this.url + "/" + data.id, data) : axios.post(this.url, data);
 
     return promise
       .then(onSuccess)

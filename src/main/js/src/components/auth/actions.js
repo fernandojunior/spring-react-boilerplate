@@ -1,5 +1,3 @@
-import type { ThunkAction } from '../../types';
-
 import { authService } from '../../services';
 
 export const actionTypes = {

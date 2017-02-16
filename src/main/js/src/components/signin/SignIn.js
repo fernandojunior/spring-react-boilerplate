@@ -1,17 +1,11 @@
 /* @flow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { routerContext as RouterType } from 'react-router/PropTypes';
-
-import axios from 'axios';
+import { routerContext as RouterType } from '../../propTypes';
 
 import { signIn } from '../auth/actions';
 
-import type { Router } from '../../types';
-
 class SignIn extends React.Component {
-  context: { router: Router };
-  props: { dispatch: Function, location: Object };
   state: { authFailed: boolean };
 
   usernameInput : HTMLInputElement;
@@ -83,6 +77,11 @@ class SignIn extends React.Component {
       </form>
     );
   }
+}
+
+SignIn.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  location: React.PropTypes.object.isRequired
 }
 
 SignIn.contextTypes = {

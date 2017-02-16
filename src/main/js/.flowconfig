@@ -1,5 +1,4 @@
 [include]
-src/main/js
 
 [ignore]
 <PROJECT_ROOT>/.mvn/node/.*
@@ -8,5 +7,4 @@ src/main/js
 <PROJECT_ROOT>/node_modules/react-side-effect/.*
 
 [options]
-module.name_mapper.extension='less' -> '<PROJECT_ROOT>/src/main/flow/StyleStub.js'
-
+module.name_mapper.extension='less' -> '<PROJECT_ROOT>/flow/StyleStub.js'

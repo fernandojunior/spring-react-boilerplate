@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/index.html", "/app/**", "/bower_components/**", "/favicon.ico");
+        web.ignoring().antMatchers("/index.html", "/static/**", "/bower_components/**", "/favicon.ico");
     }
 
     public void configurePermissions(HttpSecurity http) throws Exception {
@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configurePermissions(http);
 
         // login handling
-        http.formLogin().loginPage("/signin").loginProcessingUrl("/api/signin")
+        http.formLogin().loginProcessingUrl("/api/signin")
                 .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).permitAll();
 
         // logout handling
