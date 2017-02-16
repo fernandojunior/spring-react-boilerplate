@@ -17,6 +17,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 public final class State {
 
+    private State() {
+    }
+
     /**
      * Populates standard parts of the shared client/server model into the Spring {@link Model}. Values prefixed with
      * "__" will be made available to the JavaScript render function only. All other values will be passed in the

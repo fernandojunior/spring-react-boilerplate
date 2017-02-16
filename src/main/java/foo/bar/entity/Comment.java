@@ -1,16 +1,17 @@
 package foo.bar.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import foo.bar.core.entity.AbstractEntity;
+
 /**
- * Simple data container class. We need a no-args constructor so that Jackson can deserialise these.
+ * Simple data container class.
  */
 @Entity
-public class Comment {
+public class Comment extends AbstractEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +20,7 @@ public class Comment {
     private String content;
 
     public Comment() {
+        super();
     }
 
     public Long getId() {

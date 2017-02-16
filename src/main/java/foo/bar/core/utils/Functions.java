@@ -12,6 +12,9 @@ import java.util.stream.Stream;
  */
 public final class Functions {
 
+    private Functions() {
+    }
+
     public static <T, V> List<V> map(final List<T> in, final Function<T, V> function) {
         return in == null ? null : map(in.stream(), function);
     }

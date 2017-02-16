@@ -9,6 +9,9 @@ import java.util.stream.StreamSupport;
  */
 public class Streams {
 
+    private Streams() {
+    }
+
     /**
      * Wrapper around {@link #asStream(Iterable, boolean)} that sets 'parallel' to false.
      */

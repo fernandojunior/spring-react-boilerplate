@@ -1,6 +1,6 @@
 # spring-react-boilerplate
 
-An example application that uses a Spring Java backend with a React
+An example application that uses a Spring Java backend with a REST React
 frontend.
 
 ## Another Boilerplate?

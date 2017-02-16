@@ -1,4 +1,4 @@
-package foo.bar.core.controllers;
+package foo.bar.core.controller;
 
 import java.util.Map;
 import javax.inject.Inject;

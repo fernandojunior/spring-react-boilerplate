@@ -11,6 +11,9 @@ public final class Cookies {
 
     public static final String XSRF_TOKEN_NAME = "XSRF-TOKEN";
 
+    private Cookies() {
+    }
+
     /**
      * Ensures that if a request does not supply a CSRF token in a cookie, or if the token is not up-to-date, we set it
      * in our response so that subsequent requests can succeed.
