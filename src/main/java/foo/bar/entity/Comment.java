@@ -1,9 +1,6 @@
 package foo.bar.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import foo.bar.core.entity.AbstractEntity;
 
@@ -13,22 +10,11 @@ import foo.bar.core.entity.AbstractEntity;
 @Entity
 public class Comment extends AbstractEntity<Long> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String author;
     private String content;
 
     public Comment() {
         super();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getAuthor() {
@@ -49,7 +35,7 @@ public class Comment extends AbstractEntity<Long> {
 
     @Override
     public String toString() {
-        return "Comment [id=" + id + ", author=" + author + ", content=" + content + "]";
+        return "Comment [id=" + this.getId() + ", author=" + author + ", content=" + content + "]";
     }
 
 }
