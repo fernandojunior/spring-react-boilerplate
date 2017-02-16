@@ -5,19 +5,19 @@ import { RouterType } from '../../propTypes';
 
 import { signOut } from './actions';
 
+const actionCreators = { signOut };
+
 class SignLink extends React.Component {
 
-  handleSignOut() {
-    this.props.dispatch(signOut(success => {
+  signOut() {
+
+    this.props.dispatch(actionCreators.signOut(success => {
         this.context.router.replace('/');
     }));
   }
 
   render() {
-    if (!this.props.auth.signedIn)
-      return (<Link to="/signin">Sign In</Link>);
-
-    return (<a onClick={() => this.handleSignOut()}>Sign Out</a>);
+    return(!this.props.signedIn ? <Link to="/signin">Sign In</Link> : <a onClick={ e => this.signOut() }>Sign Out</a>)
   }
 
 }
@@ -27,9 +27,13 @@ SignLink.contextTypes = {
 };
 
 SignLink.propTypes = {
- auth: React.PropTypes.object.isRequired,
+ signedIn: React.PropTypes.bool.isRequired,
  dispatch: React.PropTypes.func.isRequired
 }
 
+function mapStateToProps(state) {
+  return { signedIn: state.auth.signedIn };
+}
+
 /* Inject auth state and a dispatch() wrapper into props */
-export default connect(state => ({ auth: state.auth }))(SignLink);
+export default connect(mapStateToProps)(SignLink);

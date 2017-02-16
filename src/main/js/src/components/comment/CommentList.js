@@ -7,18 +7,20 @@ import Comment from './Comment';
 import { deleteComment, refreshComments } from './actions';
 import './CommentList.less';
 
+const actionCreators = { deleteComment, refreshComments }
+
 class CommentList extends React.Component {
 
   componentDidMount() {
-    this.handleRefreshComments();
+    this.refreshComments();
   }
 
-  handleRefreshComments() {
-    this.props.dispatch(refreshComments());
+  refreshComments() {
+    this.props.dispatch(actionCreators.refreshComments());
   }
 
-  handleDeleteComment(id) {
-    this.props.dispatch(deleteComment(id, success => {
+  deleteComment(id) {
+    this.props.dispatch(actionCreators.deleteComment(id, success => {
       this.componentDidMount();
     }));
   }
@@ -27,7 +29,7 @@ class CommentList extends React.Component {
     return (
       <div>
         <Comment author={author} content={content} key={id} />
-        <button className="btn btn-default" onClick={e => this.handleDeleteComment(id)}>Remove</button>
+        <button className="btn btn-default" onClick={e => this.deleteComment(id)}>Remove</button>
       </div>
     );
   }
@@ -39,7 +41,7 @@ class CommentList extends React.Component {
         <div>
           <Link to="/add" className="btn btn-primary">Add Comment</Link>
           {' '}
-          <button className="btn btn-default" onClick={() => this.handleRefreshComments()}>Refresh</button>
+          <button className="btn btn-default" onClick={e => this.refreshComments()}>Refresh</button>
         </div>
         { (!this.props.comments || this.props.comments.length === 0)
             ? <p>No comments yet! You could add one&hellip;?</p>

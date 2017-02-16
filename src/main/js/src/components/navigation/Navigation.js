@@ -7,8 +7,8 @@ import { SignLink } from '../auth';
 
 class Navigation extends React.Component {
 
-  renderAdminMenu(roles) {
-    if (!roles.some(r => r === 'ROLE_ADMIN')) {
+  renderAdminMenu() {
+    if (!this.props.auth.roles.some(r => r === 'ROLE_ADMIN')) {
       return null;
     }
 
@@ -55,7 +55,7 @@ class Navigation extends React.Component {
           </div>
           <div id="navbar" className="collapse navbar-right navbar-collapse">
             <ul className="nav navbar-nav">
-              {this.renderAdminMenu(this.props.auth.roles)}
+              { this.renderAdminMenu() }
               <li><Link to="/">Home</Link></li>
               <li><Link to="/add">Add Comment</Link></li>
               <li><SignLink/></li>

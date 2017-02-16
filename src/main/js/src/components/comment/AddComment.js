@@ -3,17 +3,19 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { RouterType } from '../../propTypes';
 
-import { saveComment } from './actions';
+import { saveComment, } from './actions';
+
+const actionCreators = { saveComment };
 
 class AddComment extends React.Component {
 
-  handleSaveComment(event) {
+  saveComment(event) {
     event.preventDefault();
 
     const author = this.authorInput;
     const content = this.contentInput;
 
-    this.props.dispatch(saveComment(author.value.trim(), content.value.trim()));
+    this.props.dispatch(actionCreators.saveComment(author.value.trim(), content.value.trim()));
 
     author.value = '';
     content.value = '';
@@ -23,7 +25,7 @@ class AddComment extends React.Component {
 
   render() {
     return (
-      <form onSubmit={ e => this.handleSaveComment(e) }>
+      <form onSubmit={ e => this.saveComment(e) }>
         <h1>Add Comment</h1>
         <div className="form-group">
           <label htmlFor="author">Author:</label>

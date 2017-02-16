@@ -4,6 +4,8 @@ import { RouterType } from '../../propTypes';
 
 import { signIn } from './actions';
 
+const actionCreators = { signIn }
+
 class SignIn extends React.Component {
 
   constructor(props, context) {
@@ -11,9 +13,7 @@ class SignIn extends React.Component {
     this.state = { authFailed: false };
   }
 
-  handleOnSignIn(event) {
-    event.preventDefault();
-
+  signIn() {
     const username = this.usernameInput.value.trim();
     const password = this.passwordInput.value.trim();
 
@@ -21,7 +21,7 @@ class SignIn extends React.Component {
       return;
     }
 
-    this.props.dispatch(signIn(username, password,
+    this.props.dispatch(actionCreators.signIn(username, password,
       success => {
         const { location } = this.props;
         const nextPathname = location.state && location.state.nextPathname ? location.state.nextPathname : '/';
@@ -33,8 +33,8 @@ class SignIn extends React.Component {
     ));
   }
 
-  renderAuthFailedMessage(authFailed) {
-    if (!authFailed) {
+  renderAuthFailedMessage() {
+    if (!this.state.authFailed) {
       return null;
     }
 
@@ -49,13 +49,13 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <form onSubmit={e => this.handleOnSignIn(e)}>
+      <form onSubmit={e => this.signIn()}>
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3">
             <h1>Sign In</h1>
           </div>
         </div>
-        {this.renderAuthFailedMessage(this.state.authFailed)}
+        { this.renderAuthFailedMessage() }
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3 form-group">
             <label htmlFor="userInput">Username</label>
